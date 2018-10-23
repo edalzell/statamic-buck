@@ -1,0 +1,20 @@
+routes:
+  /orders:
+    uses: OrdersController@index
+    as: orders.index
+  /orders/create:
+    uses: create
+    as: orders.create
+  post@/orders:
+    uses: store
+    as: orders.store
+  "/orders/{order}/edit":
+    uses: OrdersController@edit
+    as: orders.edit
+  "post@/orders/{order}":
+    uses: update
+    as: orders.update
+
+  "post@/orders/{order}/items":
+    uses: OrderItems@store
+    as: order-items.store

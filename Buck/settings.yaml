@@ -1,0 +1,5 @@
+fields:
+  abandoned:
+    type: integer
+    display: Days Until Cart is Abandoned
+    default: 7

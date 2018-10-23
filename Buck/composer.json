@@ -1,0 +1,7 @@
+{
+    "name": "erin-dalzell/buck",
+    "require": {
+        "stripe/stripe-php" : "*",
+        "symfony/intl" : "*"
+    }
+}
