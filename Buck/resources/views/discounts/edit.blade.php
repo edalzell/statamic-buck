@@ -9,10 +9,10 @@
     </script>
 
     <publish
-        fieldset-name="product"
-        :is-new="true"
-        title="New Product"
-        submit-url="{{ route('products.store') }}"
+        fieldset-name="discount"
+        id="{{ $discount->id }}"
+        title="{{ $discount->id }}"
+        submit-url="{{ route('discounts.update', ['discount' => $discount]) }}"
     ></publish>
 
 @endsection

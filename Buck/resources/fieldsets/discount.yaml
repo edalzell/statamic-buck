@@ -1,0 +1,24 @@
+title: Discount
+hide: true
+taxonomies: false
+sections:
+  main:
+    display: Main
+    fields:
+      type_id:
+        type: suggest
+        mode: buck.discount_types
+        width: 25
+        validate: required
+      limit_type_id:
+        type: integer
+        width: 25
+        validate: required
+      limit:
+        type: integer
+        width: 25
+        default: 0
+      amount:
+        type: text
+        width: 25
+        validate: required|numeric

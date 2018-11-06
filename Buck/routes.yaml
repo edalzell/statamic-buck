@@ -1,4 +1,20 @@
 routes:
+  /discounts:
+    uses: DiscountsController@index
+    as: discounts.index
+  /discounts/create:
+    uses: DiscountsController@create
+    as: discounts.create
+  post@/discounts:
+    uses: DiscountsController@store
+    as: discounts.store
+  "/discounts/{discount}/edit":
+    uses: DiscountsController@edit
+    as: discounts.edit
+  "post@/discounts/{discount}":
+    uses: DiscountsController@update
+    as: discounts.update
+
   /orders:
     uses: OrdersController@index
     as: orders.index

@@ -3,10 +3,12 @@
 namespace Statamic\Addons\Buck\Models;
 
 use Carbon\Carbon;
+use Statamic\Extend\Extensible;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    use Extensible;
     /**
      * The attributes that should be mutated to dates.
      *
@@ -52,6 +54,14 @@ class Order extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function discount()
+    {
+        return $this->hasOne('Statamic\Addons\Buck\Models\DiscountType');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function items()
@@ -61,12 +71,7 @@ class Order extends Model
 
     public function total()
     {
-        return $this->items->sum('total') - $this->discount();
-    }
-
-    private function discount()
-    {
-        return 0;
+        return $this->items->sum('total') - $this->discountAmount;
     }
 
     /**
@@ -78,6 +83,10 @@ class Order extends Model
     {
         return $query
             ->whereNull('completed_at')
-            ->whereDate('updated_at', '<', Carbon::now()->subDays(7));
+            ->whereDate(
+                'updated_at',
+                '<',
+                Carbon::now()->subDays($this->getConfig('abandoned_delay', 7))
+            );
     }
 }

@@ -3,8 +3,8 @@
 @section('content')
 
     <div class="flex items-center mb-3">
-        <h1 class="flex-1">Orders</h1>
-        <a href="{{ route('products.create') }}" class="btn btn-primary">Create Order</a>
+        <h1 class="flex-1">Discounts</h1>
+        <a href="{{ route('discounts.create') }}" class="btn btn-primary">Create Discount</a>
     </div>
     <div class="card flush dossier">
         <div class="dossier-table-wrapper">
@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($orders as $order)
+                    @foreach ($discounts as $discount)
                     <tr>
                         <td class="cell-title first-cell">
                             <span class="column-label">ID</span>

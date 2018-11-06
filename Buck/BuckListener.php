@@ -15,8 +15,8 @@ class BuckListener extends Listener
     {
         $nav->addTo(
             'content',
-            Nav::item('Orders')
-                ->route('orders.index')
+            Nav::item('Discounts')
+                ->route('discounts.index')
                 ->icon('shopping-cart')
         );
     }

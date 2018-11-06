@@ -1,5 +1,46 @@
 fields:
-  abandoned:
-    type: integer
-    display: Days Until Cart is Abandoned
-    default: 7
+sections:
+  product:
+    display: Product
+    fields:
+      product_collection:
+        type: collections
+        max_items: 1
+        instructions: Collection that contains all your shop products
+        width: 50
+      product_price_field:
+        type: text
+        default: 'price'
+        instructions: Field that has the product price
+        width: 50
+  vat:
+    display: VAT Categories
+    fields:
+      vat_taxonomy:
+        type: suggest
+        mode: buck.taxonomies
+        display: VAT
+        max_items: 1
+        instructions: Taxonomy that contains all your VAT categories
+        width: 50
+      vat_tax_field:
+        type: text
+        default: 'rate'
+        instructions: Field that has the VAT tax rate
+        width: 50
+  cart:
+    display: Cart
+    fields:
+      abandoned_delay:
+        type: integer
+        display: Days Until Cart is Abandoned
+        default: 7
+  templates:
+    display: Templates
+    fields:
+      from_email:
+        type: text
+        width: 50
+      receipt_template:
+        type: template
+        width: 50

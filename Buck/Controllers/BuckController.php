@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Stripe\Charge;
 use Stripe\Stripe;
 use Statamic\API\Crypt;
+use Statamic\API\Email;
 use Statamic\API\Request;
 use Statamic\Extend\Controller;
 use Illuminate\Support\Facades\Cookie;
@@ -31,11 +32,6 @@ class BuckController extends Controller
     /** @var Customer */
     private $customer;
 
-    public function getTest()
-    {
-        dd(Customer::find(1)->getAttributes());
-    }
-
     public function init()
     {
         $this->loadData();
@@ -44,6 +40,10 @@ class BuckController extends Controller
         $this->order = Order::find(session('buck_order_id'));
 
         Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+    }
+
+    public function getTest()
+    {
     }
 
     public function postCart()
@@ -184,6 +184,12 @@ class BuckController extends Controller
 
     private function sendReceipt()
     {
+        Email::to($this->customer->email())
+        ->from($this->getConfig('from_email'))
+        ->in('site/themes/' . Config::getThemeName() . '/templates')
+        ->template($this->getConfig('receipt_template'))
+        ->with($this->order->toArray())
+        ->send();
     }
 
     private function redirectOrBack($cookie = null)

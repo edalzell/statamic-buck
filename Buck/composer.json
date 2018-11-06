@@ -2,6 +2,7 @@
     "name": "erin-dalzell/buck",
     "require": {
         "stripe/stripe-php" : "*",
-        "symfony/intl" : "*"
+        "symfony/intl" : "*",
+        "spatie/laravel-binary-uuid": "^1.3"
     }
 }

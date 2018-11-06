@@ -123,16 +123,6 @@ class BuckTags extends Tags
     }
 
     /**
-     * Maps to {{ charge:details }}
-     *
-     * @return array
-     **/
-    public function details()
-    {
-        return $this->success() ? $this->flash->get('details') : [];
-    }
-
-    /**
      * Encrypts any special meta fields set as tag parameters
      * and sets them in a special HTML hidden input field.
      *
@@ -226,7 +216,7 @@ class BuckTags extends Tags
     }
 
     /**
-     * Maps to {{ charge:success }}
+     * Maps to {{ buck:success }}
      *
      * @return bool
      **/
@@ -235,6 +225,11 @@ class BuckTags extends Tags
         return $this->flash->exists('success');
     }
 
+    /**
+     * Maps to {{ buck:errors }}
+     *
+     * @return bool|string
+     **/
     public function errors()
     {
         if (!$this->hasErrors()) {
