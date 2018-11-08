@@ -13,39 +13,19 @@ class CreateBuckTables extends Migration
      */
     public function up()
     {
-        Schema::create('discount_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title')->unique();
-            $table->string('description');
-        });
-
-        Schema::create('discount_limit_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title')->unique();
-            $table->string('description');
-        });
-
-        Schema::create('statuses', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title')->unique();
-            $table->string('description');
-        });
-
         Schema::create('discounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('type_id');
-            $table->unsignedInteger('limit_type_id');
-            $table->string('limit');
+            $table->string('type');
+            $table->string('limit_type');
+            $table->string('limit')->nullable();
             $table->decimal('amount');
-
-            $table->foreign('type_id')->references('id')->on('discount_types');
-            $table->foreign('limit_type_id')->references('id')->on('discount_limit_types');
+            $table->timestamps();
         });
 
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->unsignedInteger('status_id');
+            $table->string('status');
             $table->timestamp('completed_at')->nullable();
             $table->string('gateway_transaction_id');
             $table->unsignedInteger('customer_id')->nullable();
@@ -53,7 +33,6 @@ class CreateBuckTables extends Migration
             $table->decimal('discount_amount')->nullable();
 
             $table->foreign('customer_id')->references('id')->on('users');
-            $table->foreign('status_id')->references('id')->on('statuses');
             $table->foreign('discount_id')->references('id')->on('discounts');
         });
 

@@ -5,15 +5,28 @@ sections:
   main:
     display: Main
     fields:
-      type_id:
+      type:
+        display: Type
         type: suggest
-        mode: buck.discount_types
+        options:
+          amount_off: Amount Off Cart Total
+          percent_off: Percentage Off Cart Total
+          free_shipping: Free Shipping
+          buy_x_get_y_amount_off: Buy X Get Y Amount Off
+          buy_x_get_y_percent_off: Buy X Get Y Percentage Off
         width: 25
         validate: required
-      limit_type_id:
-        type: integer
+        max_items: 1
+      limit_type:
+        display: Limit Type
+        type: suggest
+        options:
+          unlimited: Unlimited Usage
+          total: Total Times Used
+          customer: Total Times Per Customer
         width: 25
         validate: required
+        max_items: 1
       limit:
         type: integer
         width: 25
