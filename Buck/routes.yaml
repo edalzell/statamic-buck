@@ -30,7 +30,3 @@ routes:
   "post@/orders/{order}":
     uses: update
     as: orders.update
-
-  "post@/orders/{order}/items":
-    uses: OrderItems@store
-    as: order-items.store
