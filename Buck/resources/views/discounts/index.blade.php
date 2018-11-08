@@ -12,12 +12,12 @@
                 <thead>
                     <tr>
                         <th class="column-id">ID</th>
-                        <th class="column-customer">Customer ID</th>
-                        <th class="column-discount-id">Discount ID</th>
-                        <th class="column-discount">Discount</th>
-                        <th class="column-date">Created At</th>
-                        <th class="column-date">Updated At</th>
-                        <th class="column-date">Completed At</th>
+                        <th class="column-type">Type</th>
+                        <th class="column-limit-type">Limit Type</th>
+                        <th class="column-limit">Limit</th>
+                        <th class="column-amount">Amount</th>
+                        <th class="column-created-at">Created At</th>
+                        <th class="column-updated-at">Updated At</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,20 +25,22 @@
                     <tr>
                         <td class="cell-title first-cell">
                             <span class="column-label">ID</span>
-                            <a class="" href="{{ route('orders.edit', ['order' => $order->id]) }}">{{ $order->id }}</a>
+                            <a class="" href="{{ route('discounts.edit', ['discount' => $discount->id]) }}">{{ $discount->id }}</a>
                         </td>
-                        <td class="cell-customer">
-                            <span>{{ $order->customer->name }}</span>
+                        <td class="cell-type">
+                            <span>{{ $discount->type }}</span>
                         </td>
-                        <td class="cell-discount-id">
-                            <span>{{ $order->discount_id }}</span>
+                        <td class="cell-limit-type">
+                            <span>{{ $discount->limit_type }}</span>
                         </td>
-                        <td class="cell-discount">
-                            <span>{{ $order->discount }}</span>
+                        <td class="cell-limit">
+                            <span>{{ $discount->limit }}</span>
                         </td>
-                        <td class="cell-date">{{ isset($order->created_at) ? $order->created_at->format('Y/m/d') : '' }}</td>
-                        <td class="cell-date">{{ isset($order->updated_at) ? $order->updated_at->format('Y/m/d') : '' }}</td>
-                        <td class="cell-date">{{ isset($order->completed_at) ? $order->completed_at->format('Y/m/d') : '' }}</td>
+                        <td class="cell-amount">
+                            <span>{{ $discount->amount }}</span>
+                        </td>
+                        <td class="cell-date">{{ isset($discount->created_at) ? $discount->created_at->format('Y/m/d') : '' }}</td>
+                        <td class="cell-date">{{ isset($discount->updated_at) ? $discount->updated_at->format('Y/m/d') : '' }}</td>
                     </tr>
                     @endforeach
                 </tbody>
